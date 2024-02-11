@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td><label for="textfield">Text Field:</label>
+      <input type="text" name="textfield" id="textfield"></td>
+      <td><input type="submit" name="submit" id="submit" value="search"></td>
+      <td>Sl/No</td>
+      <td>&nbsp;name</td>
+      <td>&nbsp;address</td>
+      <td>reg no&nbsp;</td>
+      <td>DOB</td>
+      <td>&nbsp;phone no</td>
+      <td>&nbsp;email</td>&nbsp;
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.name }}</td>
+      <td>{{ i.house_name }}<br>{{ i.street }}<br>{{ i.pin }}<br>{{ post }}</td>
+      <td>{{ i.register_number }}</td>
+      <td>&nbsp;{{ i.date_of_birth }}</td>
+      <td>{{ i. phone_number}}</td>
+      <td>{{ i.email_id }}</td>
+        <td><a href="#">edit</a></td>
+      <td><a href="#">delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

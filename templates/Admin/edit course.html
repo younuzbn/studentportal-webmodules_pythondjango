@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form action="/myapp/edit_course_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+		<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;departmnet</td>
+        <input type="hidden" name="id" value="{{ data1.id }}">
+      <td><label for="select">Select:</label>
+        <select name="select" id="select">
+            {% for i in data %}
+            <option value="{{ i.id }}">{{ i.department_name }}</option>
+            {% endfor %}
+        </select></td>
+    </tr>
+    <tr>
+      <td>&nbsp;course</td>
+      <td>
+        <input type="text" name="Course_name" value="{{ data1.Course_name }}" id="course"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;semester</td>
+      <td>
+        <input type="text" name="Semester" value="{{ data1.Semester }}" id="Semester"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+    </tr>
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

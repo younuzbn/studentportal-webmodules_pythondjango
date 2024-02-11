@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;SL/No</td>
+      <td>student name&nbsp;</td>
+      <td>&nbsp;address</td>
+      <td>phone number</td>
+      <td>department&nbsp;</td>
+      <td>photo&nbsp;</td>
+      <td>academic year&nbsp;</td>
+
+	</td>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.STUDENT.name }}</td>
+      <td>{{ i.STUDENT.house_name }}<br>{{ i.STUDENT.street }}<br>{{ i.STUDENT.pin }}<br>{{ i.STUDENT.post }}</td>
+      <td>{{ i.STUDENT.phone_number}}</td>
+      <td>{{ i.DEPARTMENT.department_name }}</td>
+      <td><img src="{{ i.file }}" height="50px" width="50px"></td>
+      <td>{{ i.academic_year }}</td>
+      <td><a href="/myapp/approve_id_card_request/{{ i.id }}">approve</a></td>
+      <td><a href="/myapp/reject_id_card_request/{{ i.id }}">reject</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

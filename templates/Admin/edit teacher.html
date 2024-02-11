@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/myapp/edit_teacher_post/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+  
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;name</td>
+        <input type="hidden" value="{{ data.id }}" name="id">
+      <td>
+      <input type="text" name="name" id="name" value="{{ data.name }}"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;department</td>
+      <td>
+          <select name="department">
+              {% for i in data1 %}
+              <option {% if data.DEPARTMENT.id == i.id %} selected {% endif %} value="{{ i.id }}">{{ i.department_name }}</option>
+              {% endfor %}
+              
+          </select>
+{#      <input type="text" name="department" id="department" value="{{ data.DEPARTMENT }}">#}
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;phone no</td>
+      <td>
+      <input type="text" name="phone_number" id="phone_number" value="{{ data.phone_number }}"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;email id</td>
+      <td>
+      <input type="email" name="email_id" id="email_id" value="{{ data.email_id }}"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;photo</td>
+      <td>
+      <input type="file" name="photo" id="photo" >
+        <img src="{{ data.photo }}" width="50px" height="50px">
+        </td>
+    </tr>
+    <tr>
+      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</form>	
+</body>
+</html>

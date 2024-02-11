@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form action="/myapp/edit_club_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>name</td><input type="hidden" name="id" value="{{ data.id }}">
+      <td><label for="textfield"></label>
+        <input type="text"  name="name" value="{{ data.name }}" id="name"></td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td><label for="textfield2"></label>
+        <textarea name = "description">{{ data.description }}</textarea></td>
+    </tr>
+    <tr>
+      <td>&nbsp;photo</td>
+      <td><label for="fileField"></label><img src="{{ data.logo }}" height="80px" width="80px">
+        <input type="file" name="club_logo" id="photo" ></td>
+    </tr>
+    <tr>
+      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

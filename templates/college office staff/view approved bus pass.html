@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;from</td>
+      <td><label for="textfield">Text Field:</label>
+        <input type="text" name="textfield" id="textfield"></td>
+      <td>to&nbsp;</td>
+      <td><label for="textfield2">Text Field:</label>
+        <input type="text" name="textfield2" id="textfield2"></td>
+      <td><input type="submit" name="submit" id="submit" value="search"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;SL/No</td>
+      <td>student name&nbsp;</td>
+      <td>&nbsp;address</td>
+      <td>phone number</td>
+      <td>department&nbsp;</td>
+      <td>&nbsp;from</td>
+      <td>to&nbsp;</td>
+      <td>photo&nbsp;</td>
+      <td>accademic year&nbsp;</td>
+      <td></td>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.STUDENT.name }}</td>
+      <td>{{ i.STUDENT.house_name }}<br>{{ i.STUDENT.street }}<br>{{ i.STUDENT.pin }}<br>{{ i.STUDENT.post }}</td>
+      <td>{{ i.STUDENT.phone_number}}</td>
+      <td>{{ i.DEPARTMENT.department_name }}</td>
+      <td>{{ i.f_place }}</td>
+      <td>{{ i.to_place }}</td>
+      <td><img src="{{ i.file }}" height="50px" width="50px"></td>
+      <td>{{ i.academic_year }}</td>
+      <td><a href="/myapp/delete_bus_pass/{{ i.id }}">delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

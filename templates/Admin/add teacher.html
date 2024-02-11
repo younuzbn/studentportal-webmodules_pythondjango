@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/myapp/add_teacher_post/" method="post" enctype="multipart/form-data"> 
+            {% csrf_token %}
+
+
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;name</td>
+      <td>
+      <input type="text" name="teacher_name" id="teacher_name"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;department</td>
+      <td>
+{#      <input type="text" name="department" id="department">#}
+          <select name="department">
+              {% for i in data %}
+              <option value="{{ i.id }}">{{ i.department_name }}</option>
+              {% endfor %}
+              
+          </select>
+      
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;phone no</td>
+      <td>
+      <input type="text" name="teacher_phone_no" id="teacher_phone_no"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;email id</td>
+      <td>
+      <input type="email" name="teacher_email_id" id="teacher_email"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;photo</td>
+      <td>
+      <input type="file" name="teacher_photo" id="teacher_photo"></td>
+    </tr>
+    <tr>
+      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</form>
+</body>
+</html>

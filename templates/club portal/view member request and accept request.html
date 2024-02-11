@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;from</td>
+      <td><label for="textfield">Text Field:</label>
+        <input type="text" name="textfield" id="textfield"></td>
+      <td>to&nbsp;</td>
+      <td><label for="textfield2">Text Field:</label>
+        <input type="text" name="textfield2" id="textfield2"></td>
+      <td><input type="submit" name="submit" id="submit" value="search"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;SL/No</td>
+      <td>&nbsp;student details</td>
+      <td>&nbsp;date</td>
+      <td>&nbsp;status</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.name }},<br><img src="{{ i.photo }}" height="50px" ><br>{{ i.house_name }}<br>{{ i.street }}<br>{{ i.pin }}<br>{{ i.post }}<br>{{ i.register_number }}<br>{{ i.date_of_birth }}<br>{{ i.phone_number }}<br>{{ i.email.id }}</td>
+      <td>&nbsp;{{ i.date }}</td>
+      <td>{{ i.status }}</td>
+      <td><a href="/myapp/approve_member_request/{{ i.id }}">approve</a></td>
+      <td><a href="/myapp/reject_member_request/{{ i.id }}">deny</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

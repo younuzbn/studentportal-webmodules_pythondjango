@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form action="/myapp/edit_student_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+	    <table width="200" border="1">
+            <tbody>
+                <tr>
+                    <td>&nbsp;name</td>
+                        <input type="hidden" name="id" value="{{ data.id }}">
+                    <td>
+                        <input type="text" name="name" id="name" value="{{ data.name }}"><label for="name"></label>
+        
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;house name</td>
+                    <td><label for="house_name"></label>
+                        <input type="text" name="house_name" id="house_name" value="{{ data.house_name }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;street name</td>
+                    <td>
+                        <input type="text" name="street" id="street_name" value="{{ data.street }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;pin</td>
+                    <td>
+                        <input type="text" name="pin" id="pin" value="{{ data.pin }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;post</td>
+                    <td>
+                        <input type="text" name="post" id="post" value="{{ data.post }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;reg no</td>
+                    <td>
+                        <input type="text" name="register_number" id="reg_no" value="{{ data.register_number }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;DOB</td>
+                    <td>
+                        <input type="date" name="date_of_birth" id="date_of_birth" value="{{ data.date_of_birth }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;phone no</td>
+                    <td>
+                        <input type="text" name="phone_number" id="phone_number" value="{{ data.phone_number }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;email id</td>
+                    <td>
+                        <input type="email" name="email_id" id="email_id" value="{{ data.email_id }}"></td>
+                </tr>
+    
+                <tr>
+                    <td>gender
+                    <td><input type="radio" name="gender" id="radio" value="male">
+                    Male
+                        <label for="radio">
+			            <br>
+                            <input type="radio" name="gender" id="radio2" value="female">
+                            Female </label></td>
+                </tr>
+	            <tr>
+                    <td>photo
+                    <td><label for="photo"></label>
+                        <input type="file" name="photo" id="photo" >
+                            <img src="{{ data.photo }}" height="50px" width="50px">
+                    </td>
+                </tr>
+	            <tr>
+                    <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+                    <td>&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+	</form>
+</body>
+</html>

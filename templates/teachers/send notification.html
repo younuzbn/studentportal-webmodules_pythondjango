@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+
+	<form action="/myapp/send_notification_teacher_post/" method="post">
+        {% csrf_token %}
+        <body>
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;notification</td>
+      <td><label for="notification"></label>
+        <input type="text" name="notification" id="notification"></td>
+    </tr>
+    <tr>
+      <td><input type="submit" name="submit" id="submit" value="send"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+	</form>
+</body>
+</html>

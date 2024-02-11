@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+	<form action="/myapp/add_student_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;name</td>
+      <td><label for="student_name"></label>
+        <input type="text" name="student_name" id="student_name"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;house name</td>
+      <td><label for="house_name"></label>
+        <input type="text" name="house_name" id="house_name"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;street name</td>
+      <td><label for="street_name"></label>
+        <input type="text" name="street_name" id="street_name"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;pin</td>
+      <td><label for="pin"></label>
+        <input type="text" name="pin" id="pin"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;post</td>
+      <td><label for="post"></label>
+        <input type="text" name="post" id="post"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;reg no</td>
+      <td><label for="reg_no"></label>
+        <input type="text" name="reg_no" id="reg_no"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;Date of Birth</td>
+      <td><label for="date_of_birth"></label>
+        <input type="date" name="date_of_birth" id="date_of_birth"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;phone no</td>
+      <td><label for="phone_number"></label>
+        <input type="text" name="phone_number" id="phone_number"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;email</td>
+      <td><label for="email"></label>
+        <input type="email" name="email" id="email"></td>
+    </tr>
+    <tr>
+      <td>gender
+      <td><input type="radio" name="gender" id="radio" value="male">
+		  Male
+        <label for="radio">
+			<br>
+          <input type="radio" name="gender" id="radio2" value="female">
+     Female </label></td>
+    </tr>
+	  <tr>
+      <td>photo
+      <td><label for="photo">File:</label>
+        <input type="file" name="photo" id="photo"></td>
+    </tr>
+	  <tr>
+      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+	</form>
+</body>
+</html>
