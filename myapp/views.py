@@ -907,34 +907,116 @@ def home_teachers(request):
 def login_student(request):
     username = request.POST["username"]
     password = request.POST["password"]
-    return JsonResponse({"status":"ok"})
+    var = Login.objects.filter(username=username, password=password)
+    if var.exists():
+        var1 = Login.objects.get(username=username, password=password)
+        lid = var1.id
+        if var1.type == 'student':
+            return JsonResponse({"status": "ok",'lid':str(lid)})
+        else:
+            return JsonResponse({"status": "no"})
+    else:
+        return JsonResponse({"status":"no"})
+
 
 def view_profile_student(request):
-    return JsonResponse({"status":"ok"})
+    lid = request.POST["lid"]
+    prof = Student.objects.get(LOGIN_id=lid)
+    return JsonResponse({"status":"ok",'name':prof.name,'photo':prof.photo,'house_name':prof.house_name,'street':prof.street,'pin':prof.pin,'postal':prof.postal,'register_number':prof.register_number,'date_of_birth':prof.date_of_birth,'phone_number':prof.phone_number,'email_id':prof.email_id})
 
 def send_bus_pass_request(request):
-    return JsonResponse({"status":"ok"})
+    lid = request.POST["lid"]
+    department = request.POST["department"]
+    f_place = request.POST["f_place"]
+    to_place = request.POST["to_place"]
+    academic_year = request.POST["academic_year"]
+    file = request.FILES["file"]
+    bus = Bus_pass()
+    bus.DEPARTMENT_id = department
+    bus.STUDENT = Student.objects.get(LOGIN_id=lid)
+    bus.f_place = f_place
+    bus.to_place = to_place
+    bus.academic_year = academic_year
+    bus.file = file
 
+    return JsonResponse({"status": "ok"})
 def send_id_card_request(request):
+    lid = request.POST["lid"]
+    department = request.POST["department"]
+    academic_year = request.POST["academic_year"]
+    file = request.FILES["file"]
+    id_card = Id_card()
+    Id_card.DEPARTMENT_id = department
+    Id_card.STUDENT = Student.objects.get(LOGIN_id=lid)
+    id_card.academic_year = academic_year
+    id_card.file = file
+    id_card.save()
     return JsonResponse({"status":"ok"})
 
 def join_club(request):
+    lid = request.POST["lid"]
+    club = request.POST["club"]
+    clb = Club_members()
+    from datetime import datetime
+    clb.date = datetime.now().today()
+    clb.status = 'pending'
+    clb.STUDENT = Student.objects.get(LOGIN_id=lid)
+    clb.save()
     return JsonResponse({"status":"ok"})
 
 def view_club_request_status(request):
-    return JsonResponse({"status":"ok"})
+    lid = request.POST["lid"]
+    clubstat = Club_members.objects.filter(LOGIN_id=lid)
+    l = []
+    for i in clubstat:
+        l.append({'id': i.id, 'CLUB': i.CLUB, 'status': i.status,'date': i.date})
+    return JsonResponse({"status":"ok",'data':l})
 
 def view_attendance(request):
-    return JsonResponse({"status":"ok"})
+    lid = request.POST["lid"]
+    att = Attendance.objects.filter(STUDENT__LOGIN_id=lid)
+    l = []
+    for i in att:
+        l.append({'id': i.id,'subject': i.subject, 'date': i.date,'day': i.day})
+    return JsonResponse({"status": "ok", 'data': l})
 
 def send_complaint(request):
+    lid = request.POST["lid"]
+    complaint = request.POST["complaint"]
+    com = Complaint()
+    com.complaint = complaint
+    com.STUDENT = Student.objects.get(LOGIN_id=lid)
+    com.reply = 'pending'
+    com.status = 'pending'
+    from datetime import datetime
+    com.date = datetime.now().today()
+    com.save()
     return JsonResponse({"status":"ok"})
 
 def view_complaint_reply(request):
-    return JsonResponse({"status":"ok"})
+    lid = request.POST["lid"]
+    comreply = Complaint.objects.filter(STUDENT__LOGIN_id=lid)
+    l = []
+    for i in comreply:
+        l.append({'id':i.id,'complaint':i.complaint,'reply':i.reply})
+    return JsonResponse({"status":"ok",'data':l})
 
 def change_password_student(request):
-    return JsonResponse({"status":"ok"})
+    current_password = request.POST["current_password"]
+    new_password = request.POST["new_password"]
+    confirm_password = request.POST["confirm_password"]
+    lid = request.POST["lid"]
+    log = Login.objects.filter(password=current_password)
+    if log.exists():
+        log1 = Login.objects.get(password=current_password, id=lid)
+        if new_password == confirm_password:
+            log1 = Login.objects.filter(password=current_password, id=lid).update(
+                password=new_password)
+            return JsonResponse({"status":"ok"})
+        else:
+            return JsonResponse({"status":"no"})
+    else:
+        return JsonResponse({"status":"no"})
 
 def logout_student(request):
     return JsonResponse({"status":"ok"})

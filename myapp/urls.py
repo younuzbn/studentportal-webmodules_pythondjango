@@ -121,17 +121,17 @@ urlpatterns = [
    path('view_rejected_bus_pass_post/', views.view_rejected_bus_pass_post),
    path('view_course_post/', views.view_course_post),
 
-   #path('login_student_post/', views.login_student_post),
-   #path('view_profile_student_post/', views.view_profile_student_post),
-   #path('send_bus_pass_request_post/', views.send_bus_pass_request_post),
-   #path('send_id_card_request_post/', views.send_id_card_request_post),
-   #path('join_club_post/', views.join_club_post),
-   #path('view_club_request_status_post/', views.view_club_request_status_post),
-   #path('view_attendance_post/', views.view_attendance_post),
-   #path('send_complaint_post/', views.send_complaint_post),
-   #path('view_complaint_reply_post/', views.view_complaint_reply_post),
-   #path('change_password_student_post/', views.change_password_student_post),
-   #path('logout_student_post/', views.logout_student_post),
+   path('login_student/', views.login_student),
+   path('view_profile_student/', views.view_profile_student),
+   path('send_bus_pass_request/', views.send_bus_pass_request),
+   path('send_id_card_request/', views.send_id_card_request),
+   path('join_club/', views.join_club),
+   path('view_club_request_status/', views.view_club_request_status),
+   path('view_attendance/', views.view_attendance),
+   path('send_complaint/', views.send_complaint),
+   path('view_complaint_reply/', views.view_complaint_reply),
+   path('change_password_student/', views.change_password_student),
+   path('logout_student/', views.logout_student),
 
 
    #====club=======
