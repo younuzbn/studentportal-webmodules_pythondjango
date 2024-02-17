@@ -1,3 +1,4 @@
+import datetime
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
@@ -922,7 +923,11 @@ def login_student(request):
 def view_profile_student(request):
     lid = request.POST["lid"]
     prof = Student.objects.get(LOGIN_id=lid)
-    return JsonResponse({"status":"ok",'name':prof.name,'photo':prof.photo,'house_name':prof.house_name,'street':prof.street,'pin':prof.pin,'postal':prof.postal,'register_number':prof.register_number,'date_of_birth':prof.date_of_birth,'phone_number':prof.phone_number,'email_id':prof.email_id})
+    return JsonResponse({"status":"ok",'name':prof.name,'photo':prof.photo,
+                         'house_name':prof.house_name,'street':prof.street,
+                         'pin':prof.pin,'post':prof.post,'register_number':prof.register_number,
+                         'date_of_birth':prof.date_of_birth,'phone_number':prof.phone_number,
+                         'email_id':prof.email_id})
 
 def send_bus_pass_request(request):
     lid = request.POST["lid"]
@@ -930,26 +935,47 @@ def send_bus_pass_request(request):
     f_place = request.POST["f_place"]
     to_place = request.POST["to_place"]
     academic_year = request.POST["academic_year"]
-    file = request.FILES["file"]
+    file = request.POST["file"]
     bus = Bus_pass()
     bus.DEPARTMENT_id = department
     bus.STUDENT = Student.objects.get(LOGIN_id=lid)
     bus.f_place = f_place
     bus.to_place = to_place
     bus.academic_year = academic_year
-    bus.file = file
+    import datetime
+    bus.date = datetime.datetime.now().date()
+    bus.status = "pending"
+    import datetime
+    import base64
+    date = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    a = base64.b64decode(file)
+    fh = open("//Users//younuz//PycharmProjects//studentportal//media//"+date+".jpg","wb")
+    fh.write(a)
+    fh.close()
+    path = "/media/"+date+".jpg"
+    bus.file = path
+    bus.save()
+
 
     return JsonResponse({"status": "ok"})
 def send_id_card_request(request):
     lid = request.POST["lid"]
     department = request.POST["department"]
     academic_year = request.POST["academic_year"]
-    file = request.FILES["file"]
+    file = request.POST["photo"]
     id_card = Id_card()
     Id_card.DEPARTMENT_id = department
     Id_card.STUDENT = Student.objects.get(LOGIN_id=lid)
     id_card.academic_year = academic_year
-    id_card.file = file
+    import datetime
+    import base64
+    date = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+    a = base64.b64decode(file)
+    fh = open("//Users//younuz//PycharmProjects//studentportal//media//" + date + ".jpg", "wb")
+    fh.write(a)
+    fh.close()
+    path = "/media/" + date + ".jpg"
+    id_card.file = path
     id_card.save()
     return JsonResponse({"status":"ok"})
 
