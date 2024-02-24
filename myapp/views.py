@@ -979,6 +979,13 @@ def send_id_card_request(request):
     id_card.save()
     return JsonResponse({"status":"ok"})
 
+def view_club_student(request):
+    clubnames = Club.objects.all()
+    l = []
+    for i in clubnames:
+        l.append({'id': i.id, 'name': i.name,'logo': i.logo,'description': i.description})
+    return JsonResponse({"status": "ok", 'data': l})
+
 def join_club(request):
     lid = request.POST["lid"]
     club = request.POST["club"]
@@ -995,7 +1002,7 @@ def view_club_request_status(request):
     clubstat = Club_members.objects.filter(LOGIN_id=lid)
     l = []
     for i in clubstat:
-        l.append({'id': i.id, 'CLUB': i.CLUB, 'status': i.status,'date': i.date})
+        l.append({'id': i.id, 'CLUB': i.CLUB.name, 'status': i.status,'date': i.date})
     return JsonResponse({"status":"ok",'data':l})
 
 def view_attendance(request):
@@ -1024,7 +1031,7 @@ def view_complaint_reply(request):
     comreply = Complaint.objects.filter(STUDENT__LOGIN_id=lid)
     l = []
     for i in comreply:
-        l.append({'id':i.id,'complaint':i.complaint,'reply':i.reply})
+        l.append({'id':i.id,'complaint':i.complaint,'date':i.date,'status':i.status,'reply':i.reply})
     return JsonResponse({"status":"ok",'data':l})
 
 def change_password_student(request):

@@ -126,6 +126,7 @@ urlpatterns = [
    path('send_bus_pass_request/', views.send_bus_pass_request),
    path('send_id_card_request/', views.send_id_card_request),
    path('join_club/', views.join_club),
+   path('view_club_student/', views.view_club_student),
    path('view_club_request_status/', views.view_club_request_status),
    path('view_attendance/', views.view_attendance),
    path('send_complaint/', views.send_complaint),
