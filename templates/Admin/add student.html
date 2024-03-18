@@ -1,11 +1,47 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-</head>
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+    
+    <style>
+    /* Define minimal styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0; /* Remove border from the table */
+    }
 
-<body>
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply minimal styling to form elements */
+    select, input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Adjust border radius */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border: none; /* Remove border for the button */
+        border-radius: 5px; /* Adjust border radius for the button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+
 	<form action="/myapp/add_student_post/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 	<table width="200" border="1">
@@ -36,9 +72,23 @@
         <input type="text" name="post" id="post"></td>
     </tr>
     <tr>
-      <td>&nbsp;reg no</td>
-      <td><label for="reg_no"></label>
-        <input type="text" name="reg_no" id="reg_no"></td>
+      <td>&nbsp;register number</td>
+      <td><label for="register_number"></label>
+        <input type="text" name="register_number" id="register_number"></td>
+    </tr>
+    <tr>
+      <td>&nbsp;Course</td>
+      <td><label for="course"></label>
+        <select name="course" id="select">
+            {% for i in data %}
+            <option value="{{ i.id }}">{{ i.Course_name }}</option>
+            {% endfor %}
+        </select></td>
+    </tr>
+    <tr>
+      <td>&nbsp;Admission year</td>
+      <td><label for="admission_year"></label>
+        <input type="text" name="admission_year" id="admission_year"></td>
     </tr>
     <tr>
       <td>&nbsp;Date of Birth</td>
@@ -55,26 +105,27 @@
       <td><label for="email"></label>
         <input type="email" name="email" id="email"></td>
     </tr>
-    <tr>
-      <td>gender
-      <td><input type="radio" name="gender" id="radio" value="male">
-		  Male
-        <label for="radio">
-			<br>
-          <input type="radio" name="gender" id="radio2" value="female">
-     Female </label></td>
-    </tr>
+   <tr>
+       <td>Gender</td>
+       <td>
+       <select name="gender">
+           <option value="Male">Male</option>
+           <option value="Female">Female</option>
+           <option value="other">other</option>
+       </select>
+       </td>
+   </tr>
 	  <tr>
       <td>photo
       <td><label for="photo">File:</label>
         <input type="file" name="photo" id="photo"></td>
     </tr>
 	  <tr>
-      <td><input type="submit" name="submit" id="submit" value="Submit"></td>
+      
       <td>&nbsp;</td>
+          <td><input type="submit" name="submit" id="submit" value="Submit"></td>
     </tr>
   </tbody>
 </table>
 	</form>
-</body>
-</html>
+{% endblock %}

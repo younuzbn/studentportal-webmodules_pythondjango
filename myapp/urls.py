@@ -6,7 +6,10 @@ from myapp import views
 
 urlpatterns = [
    path('login/',views.login),
+   path('logout/',views.logout),
    path('home/',views.home),
+
+
 
    path('add_course/',views.add_course),
    path('add_department/',views.add_department),
@@ -16,7 +19,7 @@ urlpatterns = [
    path('add_teacher/',views.add_teacher),
    path('change_password_admin/',views.change_password_admin),
    path('change_password_teacher/',views.change_password_teacher),
-   path('change_pasword_club/',views.change_password_club),
+   path('change_password_club/',views.change_password_club),
    path('change_password_collegeofficestaff/',views.change_password_collegeofficestaff),
    path('edit_department/<id>',views.edit_department),
    path('send_complaint_reply_admin/<id>',views.send_complaint_reply_admin),
@@ -35,7 +38,17 @@ urlpatterns = [
    path('view_office_staff/',views.view_office_staff),
    path('delete_office_staff/<id>', views.delete_office_staff),
    path('view_student_admin/',views.view_student_admin),
+   path('view_student_admin_post/',views.view_student_admin_post),
    path('view_student_teacher/',views.view_student_teacher),
+   path('attendance/<id>',views.attendance),
+   path('attendance_post/',views.attendance_post),
+   path('subjectallocation/',views.subjectallocation),
+   path('subjectallocation_post/',views.subjectallocation_post),
+   path('view_allocation/',views.view_allocation),
+   path('view_allocation_post/',views.view_allocation_post),
+   path('teacher_view_subject_allocation/',views.teacher_view_subject_allocation),
+   path('teacher_view_subject_allocation_post/',views.teacher_view_subject_allocation_post),
+   path('delete_allocation/<id>',views.delete_allocation),
    path('delete_student_admin/<id>', views.delete_student_admin),
    path('view_student_collegeofficestaff/',views.view_student_collegeofficestaff),
    path('view_teachers/',views.view_teachers),
@@ -56,6 +69,7 @@ urlpatterns = [
    path('approved_member_request/',views.approved_member_request),
    path('rejected_member_request/',views.rejected_member_request),
    path('delete_club_member/<id>',views.delete_club_member),
+   path('delete_rejected_member/<id>',views.delete_rejected_member),
    path('delete_bus_pass/<id>',views.delete_bus_pass),
    path('reject_member_request/<id>',views.reject_member_request),
    path('add_club/',views.add_club),
@@ -120,18 +134,26 @@ urlpatterns = [
    path('view_id_card_rejected_post/', views.view_id_card_rejected_post),
    path('view_rejected_bus_pass_post/', views.view_rejected_bus_pass_post),
    path('view_course_post/', views.view_course_post),
+   path('view_push_notification/', views.view_push_notification),
 
    path('login_student/', views.login_student),
    path('view_profile_student/', views.view_profile_student),
    path('send_bus_pass_request/', views.send_bus_pass_request),
+   path('view_department_student/', views.view_department_student),
    path('send_id_card_request/', views.send_id_card_request),
    path('join_club/', views.join_club),
    path('view_club_student/', views.view_club_student),
    path('view_club_request_status/', views.view_club_request_status),
    path('view_attendance/', views.view_attendance),
+   path('view_attendancesea/', views.view_attendancesea),
    path('send_complaint/', views.send_complaint),
    path('view_complaint_reply/', views.view_complaint_reply),
    path('change_password_student/', views.change_password_student),
+   path('view_notification/', views.view_notification),
+   path('view_id_card_request_student/', views.view_id_card_request_student),
+   path('view_bus_pass_request_student/', views.view_bus_pass_request_student),
+   # path('view_date_notification/', views.view_date_notification),
+
    path('logout_student/', views.logout_student),
 
 

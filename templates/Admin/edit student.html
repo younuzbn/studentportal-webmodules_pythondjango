@@ -1,18 +1,53 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-</head>
+{% extends 'Admin/admin_home.html' %}
+{% block body %}
+    
+    <style>
+    /* Define minimal styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0; /* Remove border from the table */
+    }
 
-<body>
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply minimal styling to form elements */
+    select, input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Adjust border radius */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border: none; /* Remove border for the button */
+        border-radius: 5px; /* Adjust border radius for the button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
 	<form action="/myapp/edit_student_post/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 	    <table width="200" border="1">
             <tbody>
                 <tr>
                     <td>&nbsp;name</td>
-                        <input type="hidden" name="id" value="{{ data.id }}">
+                        <input type="text" name="sid" value="{{ data.id }}">
                     <td>
                         <input type="text" name="name" id="name" value="{{ data.name }}"><label for="name"></label>
         
@@ -41,10 +76,25 @@
                 <tr>
                     <td>&nbsp;reg no</td>
                     <td>
-                        <input type="text" name="register_number" id="reg_no" value="{{ data.register_number }}"></td>
+                        <input type="text" name="register_number" id="register_number" value="{{ data.register_number }}"></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;DOB</td>
+                  <td>&nbsp;Course</td>
+                  <input type="hidden" name="id" value="{{ data1.id }}">
+                    <td><label for="course">Select:</label>
+                     <select name="course" id="select">
+                          {% for i in data1 %}
+                         <option value="{{ i.id }}" {% if i.id == data.COURSE.id %} selected {% endif %}>{{ i.Course_name }}</option>
+                        {% endfor %}
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;Admission year</td>
+                    <td>
+                        <input type="text" name="admission_year" id="admission_year" value="{{ data.admission_year }}"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;date of birth</td>
                     <td>
                         <input type="date" name="date_of_birth" id="date_of_birth" value="{{ data.date_of_birth }}"></td>
                 </tr>
@@ -60,14 +110,15 @@
                 </tr>
     
                 <tr>
-                    <td>gender
-                    <td><input type="radio" name="gender" id="radio" value="male">
-                    Male
-                        <label for="radio">
-			            <br>
-                            <input type="radio" name="gender" id="radio2" value="female">
-                            Female </label></td>
-                </tr>
+       <td>Gender</td>
+       <td>
+       <select name="gender">
+           <option value="Male">Male</option>
+           <option value="Female">Female</option>
+           <option value="other">other</option>
+       </select>
+       </td>
+   </tr>
 	            <tr>
                     <td>photo
                     <td><label for="photo"></label>
@@ -82,5 +133,4 @@
             </tbody>
         </table>
 	</form>
-</body>
-</html>
+{% endblock %}

@@ -1,7 +1,3 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
--->
 <!doctype html>
 <html lang="zxx">
 
@@ -11,7 +7,7 @@ Author URL: http://w3layouts.com
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="keywords"
     content="Estates Responsive web template, Bootstrap Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-  <title>Estates Housing Category Bootstrap Responsive Web Template | Home :: W3Layouts </title>
+  <title>MHES COLLEGE OF SCIENCE & TECHNOLOGY, CHERANDATHUR</title>
   <link href="//fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600;700;800&display=swap"
     rel="stylesheet">
   <!-- Template CSS -->
@@ -25,7 +21,7 @@ Author URL: http://w3layouts.com
     <header id="site-header" class="fixed-top">
       <div class="container">
         <nav class="navbar navbar-expand-lg stroke">
-          <a class="navbar-brand pr-lg-5" href="index.html">
+          <a class="navbar-brand pr-lg-5" href="admin_home.html">
             <!--<img src="/static/admins/assets/images/logo.png" alt="" class="img-fluid">Estates-->
           </a>
           <!-- if logo is image enable this   
@@ -43,7 +39,7 @@ Author URL: http://w3layouts.com
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-lg-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="/myapp/home/">Home</a><br>
               </li>
               <!--<li class="nav-item">
                 <a class="nav-link" href="/myapp/send_notification_admin/#why">Send Notification</a>
@@ -57,11 +53,11 @@ Author URL: http://w3layouts.com
               </li>-->
               <li class="search-bar ml-lg-4 mt-lg-0 mt-4">
                 <!--/search-right-->
-                <form class="search position-relative">
-                  <input type="search" class="search__input" name="search" placeholder="Search here.."
-                    onload="equalWidth()" required="">
-                  <span class="fa fa-search search__icon"></span>
-                </form>
+{#                <form class="search position-relative">#}
+{#                  <input type="search" class="search__input" name="search" placeholder="Search here.."#}
+{#                    onload="equalWidth()" required="">#}
+{#                  <span class="fa fa-search search__icon"></span>#}
+{#                </form>#}
 
                 <!--//search-right-->
               </li>
@@ -69,7 +65,7 @@ Author URL: http://w3layouts.com
             </ul>
             <ul class="navbar-nav search-right mt-lg-0 mt-2">
               <li class="mx-3">
-                <a href="#" class="btn btn-style btn-primary ">Logout</a>
+                <a href="/myapp/logout/" class="btn btn-style btn-primary ">Logout</a>
               </li>
 
             </ul>
@@ -100,12 +96,12 @@ Author URL: http://w3layouts.com
         <div class="row">
           <div class="col-lg-6 banner-content align-self pr-lg-5">
             <h5 class="title-subhny mb-2">MHES College of Science & Technology</h5>
-            <h3 class="">Students & Teachers Portal</h3>
+            <h3 class="">Student's Portal - Admin</h3>
           <!--<p class="mt-3">Semper at. Lorem ipsum dolor sit amet elit
             elit. Non quae, ad esse et.</p>-->
             <a href="#" onclick="scrollToBottom()" class="btn btn-style btn-primary mt-lg-5 mt-4 mr-2">Send Notification <span
                 class="fa fa-arrow-right  ml-3"></a>
-            <a href="/myapp/view_complaints_admin/#why" class="btn btn-style btn-outline-dark mt-lg-5 mt-4">View Complaint <span
+            <a onclick="window.location.href='/myapp/view_complaint_admin/#tab'" class="btn btn-style btn-outline-dark mt-lg-5 mt-4">View Complaint <span
                 class="fa fa-arrow-right  ml-3"></a>
           </div>
           <div class="col-lg-6 text-center mt-lg-0 mt-md-5 mt-4">
@@ -117,93 +113,388 @@ Author URL: http://w3layouts.com
       </div>
     </div>
   </section>
+  
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          <h3 class="title-subhny">STUDENT'S PORTAL</h3>
+          <p class="title-w3l">"Empowering students with seamless access to academics, extracurriculars, and administrative functions, our Student Portal app redefines the college experience, ensuring success and connectivity for all."</p>
+        </div>
+        <div class="content-info-in row pt-5">
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr1">
+                    <span class="fa fa-briefcase"></span>
+                  </div>
+                    
+                    
+                </div>
+                <div  class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_course/#tab">Add Course</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_course/#tab">View Course</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr3">
+                    <span class="fa fa-renren"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_department/#tab">Add Department</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere .</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          
+        </div>
+        <div class="content-info-in row pt-5">
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr1">
+                    <span class="fa fa-briefcase"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_department/#tab">View Department</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_office_staff/#tab">Add Office Staff</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr3">
+                    <span class="fa fa-renren"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_office_staff/#tab">View Office Staff</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere .</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          
+        </div>
+        <div class="content-info-in row pt-5">
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr1">
+                    <span class="fa fa-briefcase"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_student/#tab">Add Student</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_student_admin/#tab">View Student</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr3">
+                    <span class="fa fa-renren"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_subject/#tab">Add Subject</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere .</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          
+        </div>
+        <div class="content-info-in row pt-5">
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr1">
+                    <span class="fa fa-briefcase"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_subjects/#tab">View Subject</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/add_teacher/#tab">Add Teacher</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr3">
+                    <span class="fa fa-renren"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_teachers/#tab">View Teachers</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere .</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="w3l-content-4 py-5" id="features">
+    <div class="content-4-main py-lg-5 py-md-4">
+      <div class="container">
+        <div class="title-content text-center">
+          
+        </div>
+        <div class="content-info-in row pt-5">
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr1">
+                    <span class="fa fa-briefcase"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/subjectallocation/#tab">Allocate Subject</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/view_allocation/#tab">View Allocation</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div><div class="content-left col-lg-4 mt-lg-0 mt-md-5 mt-3">
+            <div class="content-4-main-gd">
+              <div class="row content4-right-grids">
+                <div class="col-sm-3 content4-right-icon">
+                  <div class="content4-icon icon-clr2">
+                    <span class="fa fa-eye"></span>
+                  </div>
+                </div>
+                <div class="col-sm-9 content4-right-info pl-4">
+                  <h6><a href="/myapp/change_password_admin/#tab">Change Password</a></h6>
+                  <p>Lorem ipsum dolor sit amet,Ea consequuntur illum facere.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
   <!-- /bottom-grids-->
-  <section class="w3l-bottom-grids-6 py-5" id="services">
-    <div class="container py-lg-5 py-md-4 py-2">
-      <div class="title-content text-center">
-        <h6 class="title-subhny text-center">Go to Services</h6>
-        <!--<h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">We provide great services</h3>-->
-      </div>
-      <div class="grids-area-hny main-cont-wthree-fea row">
-        <div class="col-lg-4 col-md-6 grids-feature">
-          <div class="area-box icon-blue">
-            <span class="fa fa-rebel"></span>
-            <h4><a href="#feature" class="title-head">Manage Course</a></h4>
-            
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add Course</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Course</button>
-
-
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">
-          <div class="area-box icon-pink">
-            <span class="fa fa-line-chart"></span>
-            <h4><a href="#feature" class="title-head">Manage Department</a></h4>
-            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add Department</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Department</button>
-
-
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">
-          <div class="area-box icon-yellow">
-            <span class="fa fa-rocket"></span>
-            <h4><a href="#feature" class="title-head">Manage Office Staff</a></h4>
-            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add office Staff</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Office Staff</button>
-
-
-          </div>
-        </div>
-      </div>
+{#  <section class="w3l-bottom-grids-6 py-5" id="services">#}
+{#    <div class="container py-lg-5 py-md-4 py-2">#}
+{#      <div class="title-content text-center">#}
+{#        <h6 class="title-subhny text-center">Go to Services</h6>#}
+{#        <!--<h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">We provide great services</h3>-->#}
+{#      </div>#}
+{#      <div class="grids-area-hny main-cont-wthree-fea row">#}
+{#        <div class="col-lg-4 col-md-6 grids-feature">#}
+{#          <div class="area-box icon-blue">#}
+{#            <span class="fa fa-rebel"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Course</a></h4>#}
+{#            #}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_course/#tab'">Add Course</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_course/#tab'">View Course</button>#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">#}
+{#          <div class="area-box icon-pink">#}
+{#            <span class="fa fa-line-chart"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Department</a></h4>#}
+{#            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_department/#tab'">Add Department</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_department/#tab'">View Department</button>#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">#}
+{#          <div class="area-box icon-yellow">#}
+{#            <span class="fa fa-rocket"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Office Staff</a></h4>#}
+{#            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_office_staff/#tab'">Add office Staff</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_office_staff/#tab'">View Office Staff</button>#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#  </section>#}
+{#    <section class="w3l-bottom-grids-6 py-5" id="services">#}
+{#    <div class="container py-lg-5 py-md-4 py-2">#}
+{#      <div class="title-content text-center">#}
+{#        <!--<h6 class="title-subhny text-center">Go to Services</h6>-->#}
+{#        <!--<h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">We provide great services</h3>-->#}
+{#      </div>#}
+{#      <div class="grids-area-hny main-cont-wthree-fea row">#}
+{#        <div class="col-lg-4 col-md-6 grids-feature">#}
+{#          <div class="area-box icon-blue">#}
+{#            <span class="fa fa-rebel"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Student</a></h4>#}
+{#            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_student/#tab'">Add Student</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_student_admin/#tab'">View Student</button>#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">#}
+{#          <div class="area-box icon-pink">#}
+{#            <span class="fa fa-line-chart"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Subject</a></h4>#}
+{#            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_subject/#tab'">Add Subject</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_subjects/#tab'">View Subject</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer;#}
+{# display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/subjectallocation/#tab'">Subject Allocation</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer;#}
+{# display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_allocation/#tab'">View Allocation</button>#}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#        <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">#}
+{#          <div class="area-box icon-yellow">#}
+{#            <span class="fa fa-rocket"></span>#}
+{#            <h4><a href="#feature" class="title-head">Manage Teacher</a></h4>#}
+{#            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/add_teacher/#tab'">Add teacher</button>#}
+{#<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='/myapp/view_teachers/#tab'">View Teacher</button>#}
+{##}
+{##}
+{#          </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+    <div style="margin: 20px;">
+    <div id="tab" style="border-radius: 20px; border: 5px solid #ccc; padding: 20px; margin-left: 40px; margin-right: 40px; margin-bottom: 40px; margin-top: 40px;">
+        {% block body %}
+        {% endblock %}
     </div>
-  </section>
-    <section class="w3l-bottom-grids-6 py-5" id="services">
-    <div class="container py-lg-5 py-md-4 py-2">
-      <div class="title-content text-center">
-        <!--<h6 class="title-subhny text-center">Go to Services</h6>-->
-        <!--<h3 class="title-w3l mb-sm-5 mb-4 pb-sm-o pb-2 text-center">We provide great services</h3>-->
-      </div>
-      <div class="grids-area-hny main-cont-wthree-fea row">
-        <div class="col-lg-4 col-md-6 grids-feature">
-          <div class="area-box icon-blue">
-            <span class="fa fa-rebel"></span>
-            <h4><a href="#feature" class="title-head">Manage Student</a></h4>
-            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add Student</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Student</button>
+</div>
 
-
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">
-          <div class="area-box icon-pink">
-            <span class="fa fa-line-chart"></span>
-            <h4><a href="#feature" class="title-head">Manage Subject</a></h4>
-            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add Subject</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Subject</button>
-
-
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">
-          <div class="area-box icon-yellow">
-            <span class="fa fa-rocket"></span>
-            <h4><a href="#feature" class="title-head">Manage Teacher</a></h4>
-            <button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">Add teacher</button>
-<button style="background-color: #F85008; margin-bottom: 20px; border: 0px solid black; border-radius: 8px; box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0; box-sizing: border-box; color: white; cursor: pointer; display: inline-block; font-family: 'Amazon Ember', sans-serif; font-size: 13px; line-height: 45px; padding: 0 10px 0 11px; position: relative; text-align: center; text-decoration: none; user-select: none; -webkit-user-select: none; touch-action: manipulation; vertical-align: middle; width: 270px;" role="button" onclick="window.location.href='your-url-here'">View Teacher</button>
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+{#  </section>#}
   <!-- //bottom-grids-->
   <!--/w3l-agents-block-->
   <!--<div class="w3l-agent-block py-5" id="why">
-      {% block body %}
-      {% endblock %}
+  
     <div class="container py-lg-4">
       <div class="row align-items-center mt-5">
         <div class="col-lg-6">
@@ -240,8 +531,8 @@ Author URL: http://w3layouts.com
           </div>
         </div>
       </div>
-    </div>-->
-  </div>
+    </div>
+  </div>-->
   <!--//w3l-agents-block-->
   <!--<section class="w3l-grids-4 py-5">
     <div class="container  py-md-5 py-2">
@@ -745,7 +1036,7 @@ Author URL: http://w3layouts.com
   </section>-->
   <!-- footer17 -->
   <section class="footer-17">
-    <div class="footer17_sur py-5">
+    <div class="footer17_sur py-55">
       <div class="container py-lg-5 py-md-4">
         <div class="footer17-top">
           <div class="footer17-top-left1_sur pr-lg-4">
@@ -753,7 +1044,7 @@ Author URL: http://w3layouts.com
             <p>Group 2. 3rd b.Sc Computer Science - MHES College of Science & Technology</p>
             <ul>
               <li><a href="mailto:support@Estates.com">support@mhes.com</a></li>
-              <li><a href="tel:+(21) 255 989 8088">+91 0000 000 000</a></li>
+              <li><a href="tel:+(21) 255 989 8088">+91 8589 87 0659</a></li>
             </ul>
             <ul class="footers-17_social">
               <li><a href="#url" class="twitter"><span class="fa fa-twitter"></span></a></li>
@@ -789,7 +1080,7 @@ Author URL: http://w3layouts.com
             <p>Enter The Notifications to Let Students Know The Current Updates.</p>
             <div class="w3l-footer-subscribe mt-4">
               <form action="/myapp/send_notification_admin_post/" class="subscribe" method="post">
-                <input type="email" name="notificaton" placeholder="Send Notification" required="">
+                 <input type="text" name="notification" placeholder="Send Notification" required="" style="width: 300px; height: 50px; border: 1px solid #ccc; border-radius: 5px; padding: 8px; box-sizing: border-box; margin-top: 3px">
                 <button><span class="fa fa-paper-plane-o pr-1"></span></button>
               </form>
             </div>

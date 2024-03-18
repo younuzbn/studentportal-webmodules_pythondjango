@@ -352,11 +352,11 @@ progress {
 
 [type="search"] {
   outline-offset: -2px;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 
 [type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 
 ::-webkit-file-upload-button {
@@ -4203,7 +4203,7 @@ input[type="button"].btn-block {
   background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   -moz-appearance: none;
   appearance: none;
 }
@@ -4329,7 +4329,7 @@ input[type="button"].btn-block {
   height: 1.4rem;
   padding: 0;
   background-color: transparent;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   -moz-appearance: none;
   appearance: none;
 }
@@ -4362,7 +4362,7 @@ input[type="button"].btn-block {
   border: 0;
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   appearance: none;
 }
 
@@ -6186,7 +6186,7 @@ button.close {
   padding: 0;
   background-color: transparent;
   border: 0;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   -moz-appearance: none;
   appearance: none;
 }
@@ -8739,7 +8739,14 @@ button.bg-dark:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important;
+  padding-top: 1rem !important;
+  margin-bottom: -32px;
+}
+
+.pt-55,
+.py-55 {
+  padding-top: 5rem !important;
+  margin-bottom: -32px;
 }
 
 .pr-5,
@@ -14118,7 +14125,7 @@ select,
 label,
 li,
 span {
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
   outline: none;
   font-family: 'Poppins', sans-serif;
 }
@@ -15631,7 +15638,7 @@ a.img-title:hover {
   opacity: 0;
   top: 0;
   left: 0;
-  -webkit-appearance: none;
+  /*-webkit-appearance: none;*/
 }
 
 .w3l-faq-block .w3l-faq ul li input[type=checkbox]:checked~p {

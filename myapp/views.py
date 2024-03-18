@@ -1,7 +1,8 @@
 import datetime
 from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 
 from myapp.models import *
 
@@ -41,12 +42,34 @@ def login_post(request):
 
 
 
+# def logout_post(request):
+#     request.session['lid']=""
+#     return redirect('/myapp/login/')
+#
+# def home(request):
+#     if request.session['lid']=="":
+#         return HttpResponse(
+#             '''<script>alert('Please Login..');window.location='/myapp/login/'</script>"''')
+#     return render(request,"Admin/admin_home.html")
+
+def logout(request):
+    # Clear session data upon logout
+    request.session.clear()
+    # Redirect the user to the login page or any other page after logout
+    return redirect('/myapp/login/')
+
 def home(request):
-    return render(request,"Admin/admin_home.html")
+    if not request.session.get('lid'):
+        return redirect('/myapp/login/')
+    return render(request, "Admin/admin_home.html")
+
 
 
 
 def add_course(request):
+    if request.session['lid']=="":
+        return HttpResponse(
+            '''<script>alert('Please Login..');window.location='/myapp/login/'</script>"''')
     res=Department.objects.all()
     return render(request,"Admin/add course.html",{'data': res})
 
@@ -102,7 +125,8 @@ def add_office_staff_post(request):
     obj.save()
     return HttpResponse('''<script>alert("office staff added succesfully");window.location='/myapp/add_office_staff/'</script>''')
 def add_student(request):
-    return render(request,"Admin/add student.html")
+    res = Course.objects.all()
+    return render(request,"Admin/add student.html",{'data': res})
 
 def add_student_post(request):
     student_name = request.POST["student_name"]
@@ -112,7 +136,9 @@ def add_student_post(request):
     email_id = request.POST["email"]
     phone_number = request.POST["phone_number"]
     post = request.POST["post"]
-    reg_no = request.POST["reg_no"]
+    register_number = request.POST["register_number"]
+    course = request.POST["course"]
+    admission_year = request.POST["admission_year"]
     date_of_birth = request.POST["date_of_birth"]
     gender = request.POST["gender"]
     photo = request.FILES["photo"]
@@ -124,7 +150,7 @@ def add_student_post(request):
     path = fs.url(date)
 
     lobj = Login()
-    lobj.username = reg_no
+    lobj.username = register_number
     lobj.password = phone_number
     lobj.type = 'student'
     lobj.save()
@@ -137,7 +163,9 @@ def add_student_post(request):
     obj.email_id = email_id
     obj.phone_number = phone_number
     obj.post = post
-    obj.register_number = reg_no
+    obj.register_number = register_number
+    obj.COURSE_id = course
+    obj.admission_year = admission_year
     obj.date_of_birth = date_of_birth
     obj.gender = gender
     obj.photo = path
@@ -146,12 +174,17 @@ def add_student_post(request):
     return HttpResponse('''<script>alert("student added succesfully");window.location='/myapp/add_student/'</script>''')
 
 def add_subject(request):
-    return render(request,"Admin/add subject.html")
+    res=Course.objects.all()
+    return render(request,"Admin/add subject.html", {'data':res})
 
 def add_subject_post(request):
     subject = request.POST["subject"]
+    cid = request.POST["select"]
+    sem = request.POST["semester"]
     obj = Subject()
     obj.subject = subject
+    obj.COURSE_id=cid
+    obj.sem=sem
     obj.save()
     return HttpResponse('''<script>alert("subject added succesfully");window.location='/myapp/add_subject/'</script>''')
 def add_teacher(request):
@@ -236,7 +269,7 @@ def send_notification_admin_post(request):
     obj.date = datetime.now().strftime('%Y-%m-%d')
     obj.notification = notification
     obj.save()
-    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/send_notification_admin/'</script>''')
+    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/home/'</script>''')
 
 def view_complaint_admin(request):
     res = Complaint.objects.all()
@@ -432,7 +465,11 @@ def edit_office_staff_post(request):
 
 def edit_student(request,id):
     res = Student.objects.get(id=id)
-    return render(request,"Admin/edit student.html",{'data':res})
+    res1 = Course.objects.all()
+    return render(request,"Admin/edit student.html",{'data':res,'data1':res1})
+
+
+
 
 def edit_student_post(request):
     name = request.POST["name"]
@@ -442,10 +479,13 @@ def edit_student_post(request):
     email_id = request.POST["email_id"]
     post = request.POST["post"]
     register_number = request.POST["register_number"]
+    course = request.POST["course"]
+    admission_year = request.POST["admission_year"]
     phone_number = request.POST["phone_number"]
     date_of_birth = request.POST["date_of_birth"]
-    id = request.POST["id"]
-
+    gender = request.POST["gender"]
+    id = request.POST["sid"]
+    print(id+"vhhhg")
     obj = Student.objects.get(id=id)
     if 'photo' in request.FILES:
         photo = request.FILES["photo"]
@@ -464,8 +504,12 @@ def edit_student_post(request):
     obj.email_id = email_id
     obj.post = post
     obj.register_number = register_number
+    obj.COURSE_id = course
+    obj.admission_year = admission_year
+    obj.register_number = register_number
     obj.phone_number = phone_number
     obj.date_of_birth = date_of_birth
+    obj.gender = gender
     obj.save()
 
     return HttpResponse('''<script>alert("student edited successfully");window.location='/myapp/view_student_admin/'</script>''')
@@ -602,12 +646,13 @@ def send_notification_collegeofficestaff(request):
 
 def send_notification_collegeofficestaff_post(request):
     notification = request.POST["notification"]
-    obj = Notification()
+    obj = Notification_office_staff()
     from datetime import datetime
     obj.date = datetime.now().strftime('%Y-%m-%d')
     obj.notification = notification
+    obj.OFFICE_STAFF = Office_staff.objects.get(LOGIN_id=request.session['lid'])
     obj.save()
-    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/send_notification_collegeofviewficestaff/'</script>''')
+    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/home_collegeofficestaff/'</script>''')
 
 
 
@@ -615,7 +660,7 @@ def send_notification_collegeofficestaff_post(request):
 
 
 def change_password_teacher(request):
-    return render(request,"Admin/change password.html")
+    return render(request,"teachers/change password.html")
 
 def change_password_teacher_post(request):
     current_password = request.POST["current_password"]
@@ -637,12 +682,13 @@ def send_notification_teacher(request):
 
 def send_notification_teacher_post(request):
     notification = request.POST["notification"]
-    obj = Notification()
+    obj = Notification_teacher()
     from datetime import datetime
     obj.date = datetime.now().strftime('%Y-%m-%d')
     obj.notification = notification
+    obj.TEACHERS = Teachers.objects.get(LOGIN_id=request.session['lid'])
     obj.save()
-    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/send_notification_teacher/'</script>''')
+    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/home_teachers/'</script>''')
 
 
 
@@ -660,7 +706,119 @@ def view_student_teacher_post(request):
     return render(request, "teachers/view student.html", {"data": res})
 
 
+# Club.objects.get(LOGIN_id=110).delete()
+def attendance(request,id):
+    sub_obj=Subject.objects.get(id=id)
+    res=Student.objects.filter(COURSE_id=sub_obj.COURSE_id,)
+    year=0
+    if sub_obj.sem=="1" or sub_obj.sem=="2":
+        year=1
+    elif sub_obj.sem=="3" or sub_obj.sem=="4":
+        year=2
+    elif sub_obj.sem=="5" or sub_obj.sem=="6":
+        year=3
+    data=[]
+    for i in res:
+        diff=datetime.datetime.now().year-int(i.admission_year)
+        print(diff)
+        if diff==year:
+            data.append({
+                "photo":i.photo, "name":i.name,"register_number":i.register_number,"id":i.id
+            })
 
+
+
+    return render(request,"teachers/attendance.html",{'data':data,'id':id})
+
+def attendance_post(request):
+    atmark = request.POST.getlist("atmark")
+    sid=request.POST['sid']
+    hour=request.POST['hourSelect']
+    sub_obj = Subject.objects.get(id=sid)
+    res = Student.objects.filter(COURSE_id=sub_obj.COURSE_id, )
+    year=0
+    if sub_obj.sem == "1" or sub_obj.sem == "2":
+        year = 1
+    elif sub_obj.sem == "3" or sub_obj.sem == "4":
+        year = 2
+    elif sub_obj.sem == "5" or sub_obj.sem == "6":
+        year = 3
+    data = []
+    for i in res:
+        diff = datetime.datetime.now().year - int(i.admission_year)
+        print(diff)
+        if diff == year:
+            data.append({
+                "photo": i.photo, "name": i.name, "register_number": i.register_number, "id": int(i.id)
+            })
+    for i in data:
+        if str(i['id']) in atmark:
+            res = Attendance()
+            res.STUDENT_id=i['id']
+            res.SUBJECT_id=sid
+            res.date=datetime.datetime.now().strftime('%Y-%m-%d')
+            res.hour=hour
+            res.status="Present"
+            res.save()
+        else:
+            res = Attendance()
+            res.STUDENT_id=i['id']
+            res.SUBJECT_id=sid
+            res.date=datetime.datetime.now().strftime('%Y-%m-%d')
+            res.hour=hour
+            res.status="Absent"
+            res.save()
+
+    # print(atmark)
+
+    # for i in atmark:
+
+    return HttpResponse('''<script>alert("Attendance Marked Succesfully");window.location='/myapp/teacher_view_subject_allocation/'</script>''')
+
+# Student.objects.all().delete()
+
+def subjectallocation(request):
+    res = Subject.objects.all()
+    res2 = Teachers.objects.all()
+    return render(request,"Admin/subjectallocation.html",{'data':res,'data2':res2})
+
+def subjectallocation_post(request):
+    subject = request.POST['select']
+    teacher = request.POST['select2']
+    s = Sujectallocation()
+    s.SUBJECT_id = subject
+    s.TEACHERS_id = teacher
+    s.save()
+
+    return HttpResponse('''<script>alert("Allocated Successfully");window.location='/myapp/home/'</script>''')
+
+
+
+
+def view_allocation(request):
+    res=Sujectallocation.objects.all()
+    return render(request,"Admin/viewallocation.html",{'data':res})
+
+def view_allocation_post(request):
+    textfield = request.POST["textfield"]
+    res = Sujectallocation.objects.filter(TEACHERS__name__icontains=textfield)
+    return render(request, "Admin/viewallocation.html", {"data": res})
+
+
+def teacher_view_subject_allocation(request):
+    res=Sujectallocation.objects.filter(TEACHERS__LOGIN_id=request.session['lid'])
+    return render(request,"teachers/teacherviewsubjectallocation.html",{'data':res})
+
+def teacher_view_subject_allocation_post(request):
+    textfield = request.POST["textfield"]
+    res = Sujectallocation.objects.filter(name__icontains=textfield)
+    return render(request, "teachers/teacherviewsubjectallocation.html", {"data": res})
+
+
+def delete_allocation(request,id):
+    data=Sujectallocation.objects.get(id=id)
+    data.delete()
+    return HttpResponse('''<script>alert("Allocation Deleted successfully");window.location='/myapp/view_allocation/'</script>''')
 
 
 
@@ -668,11 +826,11 @@ def view_student_teacher_post(request):
 
 
 def home_club(request):
-    return render(request,"club portal/home.html")
+    return render(request,"club portal/club_home.html")
 
 
 def change_password_club(request):
-    return render(request,"Admin/change password.html")
+    return render(request,"club portal/change password.html")
 
 def change_password_club_post(request):
     current_password = request.POST["current_password"]
@@ -696,37 +854,46 @@ def club_view_profile(request):
 
 
 def view_member_request(request):
-    res = Club_members.objects.filter(status='pending')
+    res = Club_members.objects.filter(CLUB__LOGIN_id=request.session['lid'],status='pending')
     req = []
+    print(res)
     for i in res:
-        name= ''
-        photo= ''
-        house_name= ''
-        street= ''
-        pin= ''
-        post= ''
-        register_number= ''
-        date_of_birth= ''
-        phone_number= ''
-        email_id= ''
-        if i.LOGIN.type=='student':
+        print(i)
+        if i.LOGIN.type == 'student':
             std = Student.objects.get(LOGIN_id=i.LOGIN_id)
-            name= std.name
-            photo= std.photo
-            house_name= std.house_name
-            street= std.street
-            pin= std.pin
-            post= std.post
-            register_number= std.register_number
-            date_of_birth= std.date_of_birth
-            phone_number= std.phone_number
-            email_id= std.email_id
-        req.append({'id': i.id,'date':i.date,'status':i.status,'name':name,'photo':photo,'house_name':house_name,'street':street,'pin':pin,'post':post,'register_number':register_number,'date_of_birth':date_of_birth,'phone_number':phone_number,'email_id':email_id})
-    return render(request,"club portal/view member request and accept request.html",{'data':req})
+            req.append(
+                {'id': i.id, 'date': i.date, 'status': i.status, 'name': std.name, 'photo': std.photo, 'house_name': std.house_name,
+                 'street': std.street, 'pin': std.pin, 'post': std.post, 'register_number': std.register_number,
+                 'date_of_birth': std.date_of_birth, 'phone_number': std.phone_number, 'email_id': std.email_id})
+    return render(request, "club portal/view member request and accept request.html", {'data': req})
+
+        # name= ''
+        # photo= ''
+        # house_name= ''
+        # street= ''
+        # pin= ''
+        # post= ''
+        # register_number= ''
+        # date_of_birth= ''
+        # phone_number= ''
+        # email_id= ''
+        # if Club_members.objects.filter(LOGIN_id=i.LOGIN_id).exists():
+        #     continue
+
+            # name= std.name
+            # photo= std.photo
+            # house_name= std.house_name
+            # street= std.street
+            # pin= std.pin
+            # post= std.post
+            # register_number= std.register_number
+            # date_of_birth= std.date_of_birth
+            # phone_number= std.phone_number
+            # email_id= std.email_id
 
 
 def approved_member_request(request):
-    res = Club_members.objects.filter(status='approved')
+    res = Club_members.objects.filter(CLUB__LOGIN_id=request.session['lid'],status='approved')
     req = []
     for i in res:
         name= ''
@@ -755,7 +922,7 @@ def approved_member_request(request):
     return render(request,"club portal/view approved members.html",{'data':req})
 
 def rejected_member_request(request):
-    res = Club_members.objects.filter(status='rejected')
+    res = Club_members.objects.filter(CLUB__LOGIN_id=request.session['lid'],status='rejected')
     req = []
     for i in res:
         name= ''
@@ -788,6 +955,11 @@ def delete_club_member(request,id):
     data=Club_members.objects.get(id=id)
     data.delete()
     return HttpResponse('''<script>alert("member deleted successfully");window.location='/myapp/approved_member_request/'</script>''')
+
+def delete_rejected_member(request,id):
+    data=Club_members.objects.get(id=id)
+    data.delete()
+    return HttpResponse('''<script>alert("member deleted successfully");window.location='/myapp/rejected_member_request/'</script>''')
 
 def delete_bus_pass(request,id):
     data=Bus_pass.objects.get(id=id)
@@ -842,17 +1014,18 @@ def send_notification_club(request):
 
 def send_notification_club_post(request):
     notification = request.POST["notification"]
-    obj = Notification()
+    obj = Notification_club()
     from datetime import datetime
     obj.date = datetime.now().strftime('%Y-%m-%d')
     obj.notification = notification
+    obj.CLUB = Club.objects.get(LOGIN_id=request.session['lid'])
     obj.save()
-    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/send_notification_club/'</script>''')
+    return HttpResponse('''<script>alert("send notification successfully");window.location='/myapp/home_club/'</script>''')
 
 
 
 def home_collegeofficestaff(request):
-    return render(request,"college office staff/home.html")
+    return render(request,"college office staff/office_staff_home.html")
 
 def add_club(request):
     return render(request,"college office staff/add club.html")
@@ -870,7 +1043,7 @@ def add_club_post(request):
     lobj = Login()
     lobj.username = name
 
-    password='mhescollege'
+    password='0000'
     lobj.password = password
     lobj.type = 'club'
     lobj.save()
@@ -899,7 +1072,7 @@ def view_club_post(request):
 
 
 def home_teachers(request):
-    return render(request,"teachers/home.html")
+    return render(request,"teachers/teacher_home.html")
 
 
 
@@ -923,11 +1096,14 @@ def login_student(request):
 def view_profile_student(request):
     lid = request.POST["lid"]
     prof = Student.objects.get(LOGIN_id=lid)
+    date = Notification.objects.all().order_by('-date')
+    l = date[0]
+    d=l.date.strftime("%d-%B-%Y")
+    print(l)
     return JsonResponse({"status":"ok",'name':prof.name,'photo':prof.photo,
                          'house_name':prof.house_name,'street':prof.street,
                          'pin':prof.pin,'post':prof.post,'register_number':prof.register_number,
-                         'date_of_birth':prof.date_of_birth,'phone_number':prof.phone_number,
-                         'email_id':prof.email_id})
+                         'date_of_birth':prof.date_of_birth.strftime("%d-%m-%Y"),'phone_number':prof.phone_number,'date':d,'email_id':prof.email_id,'admission_year':prof.admission_year})
 
 def send_bus_pass_request(request):
     lid = request.POST["lid"]
@@ -937,7 +1113,7 @@ def send_bus_pass_request(request):
     academic_year = request.POST["academic_year"]
     file = request.POST["file"]
     bus = Bus_pass()
-    bus.DEPARTMENT_id = department
+    bus.DEPARTMENT_id = Student.objects.get(LOGIN_id=lid).COURSE.DEPARTMENT.id
     bus.STUDENT = Student.objects.get(LOGIN_id=lid)
     bus.f_place = f_place
     bus.to_place = to_place
@@ -954,18 +1130,21 @@ def send_bus_pass_request(request):
     fh.close()
     path = "/media/"+date+".jpg"
     bus.file = path
+    bus.date = datetime.datetime.now().date()
+    bus.status = 'pending'
     bus.save()
 
 
     return JsonResponse({"status": "ok"})
 def send_id_card_request(request):
     lid = request.POST["lid"]
-    department = request.POST["department"]
+    # department = request.POST["department"]
+    # print(department)
     academic_year = request.POST["academic_year"]
     file = request.POST["photo"]
     id_card = Id_card()
-    Id_card.DEPARTMENT_id = department
-    Id_card.STUDENT = Student.objects.get(LOGIN_id=lid)
+    id_card.DEPARTMENT_id= Student.objects.get(LOGIN_id=lid).COURSE.DEPARTMENT.id
+    id_card.STUDENT = Student.objects.get(LOGIN_id=lid)
     id_card.academic_year = academic_year
     import datetime
     import base64
@@ -976,6 +1155,8 @@ def send_id_card_request(request):
     fh.close()
     path = "/media/" + date + ".jpg"
     id_card.file = path
+    id_card.date = datetime.datetime.now().date()
+    id_card.status = 'pending'
     id_card.save()
     return JsonResponse({"status":"ok"})
 
@@ -989,11 +1170,13 @@ def view_club_student(request):
 def join_club(request):
     lid = request.POST["lid"]
     club = request.POST["club"]
+    print(club)
     clb = Club_members()
     from datetime import datetime
     clb.date = datetime.now().today()
     clb.status = 'pending'
-    clb.STUDENT = Student.objects.get(LOGIN_id=lid)
+    clb.LOGIN_id = lid
+    clb.CLUB_id = club
     clb.save()
     return JsonResponse({"status":"ok"})
 
@@ -1002,7 +1185,7 @@ def view_club_request_status(request):
     clubstat = Club_members.objects.filter(LOGIN_id=lid)
     l = []
     for i in clubstat:
-        l.append({'id': i.id, 'CLUB': i.CLUB.name, 'status': i.status,'date': i.date})
+        l.append({'id': i.id, 'CLUB': i.CLUB.name, 'description': i.CLUB.description, 'logo': i.CLUB.logo, 'status': i.status,'date': i.date})
     return JsonResponse({"status":"ok",'data':l})
 
 def view_attendance(request):
@@ -1010,7 +1193,16 @@ def view_attendance(request):
     att = Attendance.objects.filter(STUDENT__LOGIN_id=lid)
     l = []
     for i in att:
-        l.append({'id': i.id,'subject': i.subject, 'date': i.date,'day': i.day})
+        l.append({'id': i.id,'subject': i.SUBJECT.subject, 'date': i.date,'hour': i.hour, 'status': i.status})
+    return JsonResponse({"status": "ok", 'data': l})
+
+def view_attendancesea(request):
+    lid = request.POST["lid"]
+    date = request.POST["date"]
+    att = Attendance.objects.filter(STUDENT__LOGIN_id=lid,date=date)
+    l = []
+    for i in att:
+        l.append({'id': i.id,'subject': i.SUBJECT.subject, 'date': i.date,'hour': i.hour, 'status': i.status})
     return JsonResponse({"status": "ok", 'data': l})
 
 def send_complaint(request):
@@ -1022,7 +1214,7 @@ def send_complaint(request):
     com.reply = 'pending'
     com.status = 'pending'
     from datetime import datetime
-    com.date = datetime.now().today()
+    com.date = datetime.now().date()
     com.save()
     return JsonResponse({"status":"ok"})
 
@@ -1032,6 +1224,14 @@ def view_complaint_reply(request):
     l = []
     for i in comreply:
         l.append({'id':i.id,'complaint':i.complaint,'date':i.date,'status':i.status,'reply':i.reply})
+    return JsonResponse({"status":"ok",'data':l})
+
+def view_department_student(request):
+    lid = request.POST["lid"]
+    viewdep = Department.objects.filter()
+    l = []
+    for i in viewdep:
+        l.append({'id':i.id,'department':i.department_name})
     return JsonResponse({"status":"ok",'data':l})
 
 def change_password_student(request):
@@ -1050,6 +1250,64 @@ def change_password_student(request):
             return JsonResponse({"status":"no"})
     else:
         return JsonResponse({"status":"no"})
+
+
+
+def view_notification(request):
+    lid = request.POST["lid"]
+    notify = Notification.objects.all().order_by('-date', '-id')
+    notifyclub= Notification_club.objects.filter(CLUB__LOGIN__student__LOGIN_id=lid).order_by('-date', '-id')
+    notifyoffice= Notification_office_staff.objects.all().order_by('-date', '-id')
+    notifyteacher= Notification_teacher.objects.filter(TEACHERS__LOGIN__student__LOGIN_id=lid).order_by('-date', '-id')
+    l = []
+    for i in notify:
+        l.append({'id':i.id,'notification':i.notification,'date':i.date})
+    # for i in notifyclub:
+    #     l.extend({'id':i.id,'notification':i.notification,'date':i.date})
+    # for i in notifyoffice:
+    #     l.extend({'id':i.id,'notification':i.notification,'date':i.date})
+    # for i in notifyteacher:
+    #     l.extend({'id':i.id,'notification':i.notification,'date':i.date})
+    print(l)
+    return JsonResponse({"status":"ok",'data':l})
+
+
+def view_push_notification(request):
+    nid = request.POST["nid"]
+    res=Notification.objects.filter(id__gt=nid).order_by('id')
+    if res.exists():
+        i=res[0]
+        return JsonResponse({"status":"ok",'nid':i.id,"message":i.notification})
+    else:
+        return JsonResponse({"status":"no"})
+
+
+# def view_date_notification(request):
+#     # lid = request.POST["lid"]
+#     notify = Notification.objects.all().order_by('-date')
+#     l = notify[0]
+#     print(l)
+#     return JsonResponse({"status":"ok",'date':l.date})
+
+
+def view_id_card_request_student(request):
+    lid = request.POST["lid"]
+    notify = Id_card.objects.filter(STUDENT__LOGIN_id=lid).order_by('-date')
+    l = []
+    for i in notify:
+        l.append({'id':i.id,'photo':i.file,'date':i.date,'academic_year':i.academic_year,'status':i.status})
+    return JsonResponse({"status":"ok",'data':l})
+
+
+def view_bus_pass_request_student(request):
+    lid = request.POST["lid"]
+    notify = Bus_pass.objects.filter(STUDENT__LOGIN_id=lid).order_by('-date')
+    l = []
+    for i in notify:
+        l.append({'id':i.id,'photo':i.file,'date':i.date,'from_location':i.f_place,'to_location':i.to_place,'academic_year':i.academic_year,'status':i.status})
+    return JsonResponse({"status":"ok",'data':l})
+
+
 
 def logout_student(request):
     return JsonResponse({"status":"ok"})

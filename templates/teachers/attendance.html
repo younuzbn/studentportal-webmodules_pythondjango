@@ -1,0 +1,85 @@
+{% extends 'teachers/teacher_home.html' %}
+{% block body %}
+    
+    <style>
+    /* Define minimal styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0; /* Remove border from the table */
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply minimal styling to form elements */
+    select, input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Adjust border radius */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border: none; /* Remove border for the button */
+        border-radius: 5px; /* Adjust border radius for the button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+	<form action="/myapp/attendance_post/" method="post">
+    {% csrf_token %}
+    
+    <input type="hidden" name="sid" value="{{ id }}">
+	<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td><label for="textfield">Text Field:</label>
+      <input type="text" name="textfield" id="textfield"></td>
+      <td><input type="submit" name="submit" id="submit" value="search"></td>
+     
+    </tr>
+  </tbody>
+    </table>
+    <table width="200" border="1"> 
+    <select name="hourSelect">
+  <option value="hour1">Hour 1</option>
+  <option value="hour2">Hour 2</option>
+  <option value="hour3">Hour 3</option>
+  <option value="hour4">Hour 4</option>
+  <option value="hour5">Hour 5</option>
+  <option value="hour6">Hour 6</option>
+</select>
+    <tr>
+      <td>&nbsp;SL/No</td>
+      <td>&nbsp;name</td>
+      <td>reg no&nbsp;</td>
+        <td></td>
+    </tr>
+    {% for i in data %}
+    <tr>
+      
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td><img src="{{ i.photo }}" height="50px" width="50px"><br>{{ i.name }}</td>
+      <td>{{ i.register_number }}</td>
+        <td><input name="atmark" value="{{ i.id }}" type="checkbox"/></td>
+    </tr>
+  {% endfor %}
+</table>
+    <button type="submit">Mark Attendance</button>
+	</form>
+{% endblock %}

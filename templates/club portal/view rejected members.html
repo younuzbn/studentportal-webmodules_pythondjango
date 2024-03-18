@@ -1,11 +1,46 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Untitled Document</title>
-</head>
+{% extends 'club portal/club_home.html' %}
+{% block body %}
+    
+    <style>
+    /* Define minimal styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0; /* Remove border from the table */
+    }
 
-<body>
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply minimal styling to form elements */
+    select, input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Adjust border radius */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border: none; /* Remove border for the button */
+        border-radius: 5px; /* Adjust border radius for the button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
 	<fofrm>
 	<table width="200" border="1">
   <tbody>
@@ -32,11 +67,10 @@
       <td>{{ i.name }},<br><img src="{{ i.photo }}" height="50px" ><br>{{ i.house_name }}<br>{{ i.street }}<br>{{ i.pin }}<br>{{ i.post }}<br>{{ i.register_number }}<br>{{ i.date_of_birth }}<br>{{ i.phone_number }}<br>{{ i.email.id }}</td>
       <td>&nbsp;{{ i.date }}</td>
       <td>{{ i.status }}</td>
-      <td><a href="/myapp/reject_member_request/{{ i.id }}">delete</a></td>
+      <td><a href="/myapp/delete_rejected_member/{{ i.id }}">delete</a></td>
     </tr>
   {% endfor %}
   </tbody>
 </table>
 	</fofrm>
-</body>
-</html>
+{% endblock %}

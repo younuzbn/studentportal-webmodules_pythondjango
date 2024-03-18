@@ -6,6 +6,28 @@ class Login(models.Model):
     password = models.CharField(max_length=50)
     type = models.CharField(max_length=50)
 
+
+
+class Department(models.Model):
+    department_name = models.CharField(max_length=100)
+
+
+class Course(models.Model):
+    DEPARTMENT = models.ForeignKey(Department,on_delete=models.CASCADE,default="")
+    Course_name = models.CharField(max_length=100)
+    Semester = models.CharField(max_length=100)
+
+
+class Subject(models.Model):
+    subject = models.CharField(max_length=100)
+    sem = models.CharField(max_length=100, default=1)
+    COURSE = models.ForeignKey(Course, on_delete=models.CASCADE, default="")
+
+
+
+
+
+
 class Student(models.Model):
     LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
@@ -15,20 +37,12 @@ class Student(models.Model):
     pin = models.CharField(max_length=100)
     post = models.CharField(max_length=100)
     register_number = models.CharField(max_length=100)
-    date_of_birth = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100,default='')
+    COURSE = models.ForeignKey(Course, on_delete=models.CASCADE,default='')
+    admission_year = models.CharField(max_length=100,default='')
+    date_of_birth = models.DateField()
     phone_number = models.CharField(max_length=100)
     email_id = models.CharField(max_length=100)
-
-class Department(models.Model):
-    department_name = models.CharField(max_length=100)
-
-class Subject(models.Model):
-    subject = models.CharField(max_length=100)
-
-class Course(models.Model):
-    DEPARTMENT = models.ForeignKey(Department,on_delete=models.CASCADE,default="")
-    Course_name = models.CharField(max_length=100)
-    Semester = models.CharField(max_length=100)
 
 class Teachers(models.Model):
     name = models.CharField(max_length=100)
@@ -38,6 +52,10 @@ class Teachers(models.Model):
     email_id = models.CharField(max_length=100)
     LOGIN = models.ForeignKey(Login,on_delete=models.CASCADE,default="1")
 
+class Sujectallocation(models.Model):
+
+    SUBJECT = models.ForeignKey(Subject,on_delete=models.CASCADE,default="")
+    TEACHERS = models.ForeignKey(Teachers,on_delete=models.CASCADE,default="")
 class Office_staff(models.Model):
     office_staff_name = models.CharField(max_length=100)
     office_staff_photo = models.CharField(max_length=500)
@@ -47,8 +65,11 @@ class Office_staff(models.Model):
 
 
 class Notification(models.Model):
-    date = models.CharField(max_length=100)
+    date = models.DateField()
     notification = models.CharField(max_length=100)
+
+
+
 
 class Complaint(models.Model):
     date = models.CharField(max_length=100)
@@ -101,6 +122,25 @@ class Bus_pass(models.Model):
 
 class Attendance(models.Model):
     STUDENT = models.ForeignKey(Student, on_delete=models.CASCADE)
-    subject =models.CharField(max_length=100)
+    SUBJECT = models.ForeignKey(Subject, on_delete=models.CASCADE,default='')
     date = models.CharField(max_length=100)
-    day = models.CharField(max_length=100)
+    hour = models.CharField(max_length=100)
+    status = models.CharField(max_length=100,default="absent")
+
+
+class Notification_office_staff(models.Model):
+    OFFICE_STAFF = models.ForeignKey(Office_staff, on_delete=models.CASCADE)
+    date = models.DateField()
+    notification = models.CharField(max_length=100)
+
+
+class Notification_club(models.Model):
+    CLUB = models.ForeignKey(Club, on_delete=models.CASCADE)
+    date = models.DateField()
+    notification = models.CharField(max_length=100)
+
+
+class Notification_teacher(models.Model):
+    date = models.DateField()
+    TEACHERS = models.ForeignKey(Teachers, on_delete=models.CASCADE, default="")
+    notification = models.CharField(max_length=100)
